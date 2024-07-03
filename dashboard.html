@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="padding: 30px;">
+    <table style="width: 100%;">
+        <tr>
+            <td colspan="2">
+    <div id="app">
+        <h1>Smart Phone Locking and Charging System</h1>
+        <p id="message"></p>
+    </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h1>Notifications:</h1>
+                <div id="notifications"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td  style="border: 1px solid black; padding-top: 10px; padding-bottom: 10px; margin-right: 10px;">
+                <div style="text-align: center;">
+                    Box 1
+                    <button id="button1">Open Image 1</button>
+                    <button onclick="unlockBox('box1'); deleteRecordById(1)">Unlock Box 1</button>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    Box 2
+                    <button id="button2">Open Image 2</button>
+                    <button onclick="unlockBox('box2'); deleteRecordById(2)">Unlock Box 2</button>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    Box 3
+                    <button id="button3">Open Image 3</button>
+                    <button onclick="unlockBox('box3'); deleteRecordById(3)">Unlock Box 3</button>
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    Box 4
+                    <button id="button4">Open Image 4</button>
+                    <button onclick="unlockBox('box4'); deleteRecordById(4)">Unlock Box 4</button>
+                </div>
+            </td>
+            <td style="border: 1px solid black; padding-top: 10px; padding-bottom: 10px; margin-left: 10px;">
+        <div style="text-align: center;">
+            <button id="redirect-button">Redirect to Image</button>
+            <button id="delete-button">Delete Image</button>
+            <p id="real-time-image-url"></p>
+        </div>
+            </td>
+        </tr>
+    </table>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    
+    
+    <script src="dashbord_script.js"></script>
+</body>
+</html>
