@@ -80,7 +80,7 @@ ref.on('value', function(snapshot) {
             break;
         }
     }
-    document.getElementById('real-time-image-url').innerText = imageUrl;
+    // document.getElementById('real-time-image-url').innerText = imageUrl;
 }, function(error) {
     console.error('Error reading data:', error);
     document.getElementById('real-time-image-url').innerText = 'Error reading data';
@@ -88,8 +88,11 @@ ref.on('value', function(snapshot) {
 }
 
 document.getElementById('redirect-button').addEventListener('click', function() {
+const imgElement = document.getElementById('image-display');
 if (imageUrl) {
-    window.location.href = imageUrl;
+    // window.location.href = imageUrl;
+    imgElement.src = imageUrl;
+    imgElement.style.display = 'block';
 } else {
     alert('Image URL is not available');
 }
@@ -101,7 +104,12 @@ if (imageKey) {
     ref.remove()
         .then(function() {
             alert('Image URL deleted successfully.');
-            document.getElementById('real-time-image-url').innerText = '';
+
+            var imgElement = document.getElementById('image-display');
+            imgElement.src = '';
+            imgElement.style.display = 'none';
+
+            // document.getElementById('real-time-image-url').innerText = '';
             imageUrl = '';
             imageKey = '';
             document.getElementById('notifications').innerHTML = 'No Notifications';
@@ -125,7 +133,12 @@ function fetchImageUrl(boxId) {
             snapshot.forEach((childSnapshot) => {
                 const data = childSnapshot.val();
                 if (data.id === boxId) {
-                    window.open(data.imageUrl, '_blank');
+
+                    const imgElement = document.getElementById(`box-image-display-${boxId}`);
+                    imgElement.src = data.imageUrl;
+                    imgElement.style.display = 'block';
+
+                    // window.open(data.imageUrl, '_blank');
                     found = true;
                 }
             });
@@ -148,9 +161,15 @@ function fetchImageUrl(boxId) {
       const records = snapshot.val();
       for (let key in records) {
         if (records[key].id === id) {
+
+            var imgElement = document.getElementById(`box-image-display-${id}`);
+            imgElement.src = '';
+            imgElement.style.display = 'none';
+
           firebase.database().ref('Hardware_project/' + key).remove()
             .then(() => {
               console.log('Data successfully deleted!');
+              alert('Data successfully deleted!');
             })
             .catch((error) => {
               console.error('Error deleting data:', error);
