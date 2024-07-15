@@ -180,18 +180,21 @@ function fetchImageUrl(boxId) {
     })};
   
 // flask setup for the sending data
-function unlockBox(box){
-    fetch('http://<raspberry_pi_ip>:5000/unlock', {
-        method: 'POST',
+function sendunlockrequest(locker_id){
+    const API_KEY = '1234';  // Use the same key as in your Flask server
+    const RASPBERRY_PI_IP = '192.168.137.85';  // Replace with your Raspberry Pi's IP address
+    const URL = `http://${RASPBERRY_PI_IP}:5001/unlock`;
+    fetch(URL,{
+        method:'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'API_KEY': API_KEY,
+            'Content-Type':'application/json'
         },
-        body: 'box=' + box
+        body: JSON.stringify({locker_id: locker_id})
     })
-    .then(response => response.text())
-    .then(data => alert(data))
+    .then(response => response.json())
+    .then(data => console.log(data))
     .catch(error => console.error('Error:', error));
-
 }
 
     document.getElementById('button1').addEventListener('click', () => fetchImageUrl(1));
